@@ -7,13 +7,11 @@ def twoNumberChooser():
     x = input("Choose the first number: ")
     print()
     y = input("Choose the second number: ")
-    returnTuple = (x,y)
+    returnTuple = (int(x),int(y))
     return returnTuple
  
 def sum_x_y(numberTuple):
-    num1 = int(numberTuple[0])
-    num2 = int(numberTuple[1])
-    return (num1+num2)
+    return (numberTuple[0]+numberTuple[1])
 
 while looper:
     print("Choose the math operation or type EXIT:")
@@ -29,4 +27,11 @@ while looper:
         numbers = twoNumberChooser()
         print()
         print("The result is: "+str(sum_x_y(numbers)))
+        print()
+    elif (userChoice)=="1":
+        numbers = twoNumberChooser()
+        negArg2 = numbers[1]*-1
+        newTuple = (numbers[0],negArg2)
+        print()
+        print("The result is: "+str(sum_x_y(newTuple)))
         print()
