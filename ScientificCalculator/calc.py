@@ -11,8 +11,8 @@ def twoNumberChooser():
     return returnTuple
  
 def sum_x_y(numberTuple):
-    num1 = int(numberTuple(0))
-    num2 = int(numberTuple(1))
+    num1 = int(numberTuple[0])
+    num2 = int(numberTuple[1])
     return (num1+num2)
 
 while looper:
@@ -27,6 +27,6 @@ while looper:
         looper = False
     elif (userChoice)=="0":
         numbers = twoNumberChooser()
-        print(str(sum_x_y(numbers)))
-
-
+        print()
+        print("The result is: "+str(sum_x_y(numbers)))
+        print()
