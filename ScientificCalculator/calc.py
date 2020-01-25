@@ -10,8 +10,11 @@ def twoNumberChooser():
     returnTuple = (int(x),int(y))
     return returnTuple
  
-def sum_x_y(numberTuple):
-    return (numberTuple[0]+numberTuple[1])
+def sum_x_y(numberTuple, reverseFlag = False):
+    if reverseFlag:
+        return (numberTuple[0]+numberTuple[1]*-1)
+    else:
+        return (numberTuple[0]+numberTuple[1])
 
 while looper:
     print("Choose the math operation or type EXIT:")
@@ -30,8 +33,6 @@ while looper:
         print()
     elif (userChoice)=="1":
         numbers = twoNumberChooser()
-        negArg2 = numbers[1]*-1
-        newTuple = (numbers[0],negArg2)
         print()
-        print("The result is: "+str(sum_x_y(newTuple)))
+        print("The result is: "+str(sum_x_y(numbers, reverseFlag = True)))
         print()
