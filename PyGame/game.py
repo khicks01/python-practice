@@ -8,7 +8,8 @@ pygame.init()
 class Game():
     '''Defines main game class - screen parameters'''
     TICK_RATE = 30
-
+    pygame.font.init()
+    font = pygame.font.SysFont('comicsans', 75)
     def __init__(self, title, fill_color, width, height):
         self.title = title
         self.width = width
@@ -22,11 +23,13 @@ class Game():
     def run_game_loop(self):
         '''defines main game loop'''
         is_game_over = False
+        did_win = False
         direction = 0
         self.wipe_screen(self.fill_color)
         player = character.PlayerCharacter(375, 700, 50, 50)
         baddie = enemy.Enemy(20, 400, 50, 50)
-        treasure = game_object.GameObject(r"C:\Git Repos\python-practice\PyGame\treasure.png", 375, 50, 50, 50)
+        tresure_path = r"C:\Git Repos\python-practice\PyGame\treasure.png"
+        treasure = game_object.GameObject(tresure_path, 375, 50, 50, 50)
         #Main game loop
         while not is_game_over:
             #key press logic
@@ -51,10 +54,24 @@ class Game():
             baddie.draw(self.game_screen)
             player.draw(self.game_screen)
 
-            if (player.detect_collision(baddie) or player.detect_collision(treasure)):
+            if player.detect_collision(baddie):
                 is_game_over = True
+                text = self.font.render('You Lose!', True, (0, 0, 0, 0))
+                self.game_screen.blit(text, (300, 350))
+                pygame.display.update()
+                pygame.time.Clock().tick(1)
+                pygame.quit()
+                break
+            if player.detect_collision(treasure):
+                did_win = True
+                is_game_over = True
+                text = self.font.render('You Win!', True, (0, 0, 0, 0))
+                self.game_screen.blit(text, (300, 350))
+                pygame.display.update()
+                pygame.time.Clock().tick(1)
+                break
             #increment frame
             pygame.display.update()
             pygame.time.Clock().tick(self.TICK_RATE)
-
-        pygame.quit()
+        if did_win:
+            self.run_game_loop()

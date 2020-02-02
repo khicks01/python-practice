@@ -18,6 +18,7 @@ class PlayerCharacter(GameObject):
         if self.y_pos >= max_height - 50:
             self.y_pos = max_height - 50
     def detect_collision(self, other_body):
+        '''collision detection logic - if sprites overlap, its a hit'''
         if self.y_pos > other_body.y_pos + other_body.height:
             return False
         elif self.y_pos + self.height < other_body.y_pos:
