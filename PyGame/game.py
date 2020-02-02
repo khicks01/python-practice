@@ -2,6 +2,7 @@
 import pygame
 import character
 import enemy
+import game_object
 
 pygame.init()
 class Game():
@@ -25,6 +26,7 @@ class Game():
         self.wipe_screen(self.fill_color)
         player = character.PlayerCharacter(375, 700, 50, 50)
         baddie = enemy.Enemy(20, 400, 50, 50)
+        treasure = game_object.GameObject(r"C:\Git Repos\python-practice\PyGame\treasure.png", 375, 50, 50, 50)
         #Main game loop
         while not is_game_over:
             #key press logic
@@ -42,10 +44,15 @@ class Game():
                         direction = 0
             #screen update
             self.wipe_screen(self.fill_color)
+            treasure.draw(self.game_screen)
+
             player.move(direction, self.height)
             baddie.move(self.width)
             baddie.draw(self.game_screen)
             player.draw(self.game_screen)
+
+            if (player.detect_collision(baddie) or player.detect_collision(treasure)):
+                is_game_over = True
             #increment frame
             pygame.display.update()
             pygame.time.Clock().tick(self.TICK_RATE)
