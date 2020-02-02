@@ -1,6 +1,7 @@
 '''Game class uses pygame to set the title, and defines the function of the main game loop'''
 import pygame
 import character
+import enemy
 
 pygame.init()
 class Game():
@@ -23,6 +24,7 @@ class Game():
         direction = 0
         self.wipe_screen(self.fill_color)
         player = character.PlayerCharacter(375, 700, 50, 50)
+        baddie = enemy.Enemy(20, 400, 50, 50)
         #Main game loop
         while not is_game_over:
             for event in pygame.event.get():
@@ -37,9 +39,11 @@ class Game():
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
-                self.wipe_screen(self.fill_color)
-                player.move(direction)
-                player.draw(self.game_screen)
+            self.wipe_screen(self.fill_color)
+            player.move(direction, self.height)
+            baddie.move(self.width)
+            baddie.draw(self.game_screen)
+            player.draw(self.game_screen)
             #increment frame
             pygame.display.update()
             pygame.time.Clock().tick(self.TICK_RATE)
