@@ -10,6 +10,6 @@ WHITE_COLOR = (255, 255, 255)
 def main():
     ''' Executes the game code '''
     new_game = game.Game(SCREEN_TITLE, WHITE_COLOR, SCREEN_WIDTH, SCREEN_HEIGHT)
-    new_game.run_game_loop(10)
+    new_game.run_game_loop(5, 1)
     sys.exit()
 main()
