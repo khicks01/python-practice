@@ -17,17 +17,20 @@ class Game():
         self.game_screen = pygame.display.set_mode((width, height))
         self.fill_color = (fill_color)
         pygame.display.set_caption(title)
+        background_path = r"C:\Git Repos\python-practice\PyGame\background.png"
+        background_image = pygame.image.load(background_path)
+        self.image = pygame.transform.scale(background_image, (width, height))
     def wipe_screen(self, fill_color):
         '''Simple function to initialize the screen'''
         self.game_screen.fill(fill_color)
-    def run_game_loop(self):
+    def run_game_loop(self, enemy_speed):
         '''defines main game loop'''
         is_game_over = False
         did_win = False
         direction = 0
         self.wipe_screen(self.fill_color)
         player = character.PlayerCharacter(375, 700, 50, 50)
-        baddie = enemy.Enemy(20, 400, 50, 50)
+        baddie = enemy.Enemy(20, 400, 50, 50, enemy_speed)
         tresure_path = r"C:\Git Repos\python-practice\PyGame\treasure.png"
         treasure = game_object.GameObject(tresure_path, 375, 50, 50, 50)
         #Main game loop
@@ -47,8 +50,8 @@ class Game():
                         direction = 0
             #screen update
             self.wipe_screen(self.fill_color)
+            self.game_screen.blit(self.image, (0, 0))
             treasure.draw(self.game_screen)
-
             player.move(direction, self.height)
             baddie.move(self.width)
             baddie.draw(self.game_screen)
@@ -74,4 +77,5 @@ class Game():
             pygame.display.update()
             pygame.time.Clock().tick(self.TICK_RATE)
         if did_win:
-            self.run_game_loop()
+            enemy_speed += 10
+            self.run_game_loop(enemy_speed)
