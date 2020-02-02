@@ -6,7 +6,7 @@ import enemy
 pygame.init()
 class Game():
     '''Defines main game class - screen parameters'''
-    TICK_RATE = 60
+    TICK_RATE = 30
 
     def __init__(self, title, fill_color, width, height):
         self.title = title
@@ -27,6 +27,7 @@ class Game():
         baddie = enemy.Enemy(20, 400, 50, 50)
         #Main game loop
         while not is_game_over:
+            #key press logic
             for event in pygame.event.get():
                 #Quit action
                 if event.type == pygame.QUIT:
@@ -39,6 +40,7 @@ class Game():
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
                         direction = 0
+            #screen update
             self.wipe_screen(self.fill_color)
             player.move(direction, self.height)
             baddie.move(self.width)
@@ -47,4 +49,5 @@ class Game():
             #increment frame
             pygame.display.update()
             pygame.time.Clock().tick(self.TICK_RATE)
+
         pygame.quit()

@@ -15,5 +15,5 @@ class PlayerCharacter(GameObject):
         elif direction < 0:
             self.y_pos -= direction * self.SPEED
         #Set bottom - prevent character from going off screen
-        if self.y_pos >= max_heigth - 20:
-            self.y_pos = max_heigth - 20
+        if self.y_pos >= max_heigth - 50:
+            self.y_pos = max_heigth - 50
