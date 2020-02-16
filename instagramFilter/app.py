@@ -7,11 +7,12 @@ def dummy(value):
 
 identity_kernel = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
 sharpen_kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+mystery_kernel = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
 gauss_k1 = cv2.getGaussianKernel(3, 0)
 gauss_k2 = cv2.getGaussianKernel(1, 5)
 box_k = np.ones(9, np.float32) / 9.0
 
-kernels = [identity_kernel, sharpen_kernel, gauss_k1, gauss_k2, box_k ]
+kernels = [identity_kernel, sharpen_kernel,mystery_kernel, gauss_k1, gauss_k2, box_k ]
 
 
 color_orig = cv2.imread('Mallie.jpg')
