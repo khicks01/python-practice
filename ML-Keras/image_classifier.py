@@ -46,4 +46,6 @@ model.add(Dense(units=num_dimensions, activation='softmax'))
 model.compile(optimizer=SGD(learning_rate=0.01), loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(x=train_images, y=train_labels, epochs=5, batch_size=32)
+model.fit(x=train_images, y=train_labels, epochs=1, batch_size=32)
+
+model.save(filepath='C:\Git Repos\python-practice\ML-Keras\Image_Classifier.h5')
