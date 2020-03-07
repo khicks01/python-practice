@@ -7,7 +7,7 @@ model = Sequential()
 
 conv_layer = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')
 max_pool_layer = MaxPooling2D(pool_size=(2,2))
-dense_layer = Dense(1024, activation='softmax')
+dense_layer = Dense(10, activation='softmax')
 dropout_layer = Dropout(rate=0.5)
 
 model.add(conv_layer)
