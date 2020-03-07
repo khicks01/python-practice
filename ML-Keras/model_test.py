@@ -12,6 +12,11 @@ y_test = utils.to_categorical(y_test)
 
 model = load_model('C:\Git Repos\python-practice\ML-Keras\Image_Classifier.h5')
 
-results = model.evaluate(x=x_test, y=y_test)
-print("Test loss: " , results[0])
-print("Test accuracy: ", results[1])
+# results = model.evaluate(x=x_test, y=y_test)
+# print("Test loss: " , results[0])
+# print("Test accuracy: ", results[1])
+
+test_image_data = np.asarray([x_test[0]])
+prediction = model.predict(x=test_image_data)
+max_index= np.argmax(prediction[0])
+print("Prediction: ", label_array[np.argmax(model.predict(x=test_image_data))])
